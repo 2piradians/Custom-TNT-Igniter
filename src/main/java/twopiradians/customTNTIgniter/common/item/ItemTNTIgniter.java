@@ -3,7 +3,6 @@ package twopiradians.customTNTIgniter.common.item;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +18,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -62,7 +62,9 @@ public class ItemTNTIgniter extends Item
 		if (!worldIn.isRemote)
 		{
 			Block blockLookingAt = null;
-			RayTraceResult mop = Minecraft.getMinecraft().objectMouseOver;
+			Vec3d posVec = playerIn.getPositionVector().addVector(0, playerIn.getEyeHeight(), 0);
+			Vec3d lookVec = playerIn.getLookVec();
+			RayTraceResult mop = worldIn.rayTraceBlocks(posVec, lookVec);
 			if (mop != null && mop.getBlockPos() != null)
 			{
 				blockLookingAt = worldIn.getBlockState(mop.getBlockPos()).getBlock() ; 
@@ -80,7 +82,7 @@ public class ItemTNTIgniter extends Item
 				worldIn.setBlockToAir(mop.getBlockPos());
 			}
 		}
-		return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(hand));	
+		return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));	
 	}
 
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)

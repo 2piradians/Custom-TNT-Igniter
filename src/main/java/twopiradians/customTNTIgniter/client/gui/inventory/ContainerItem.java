@@ -8,6 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import twopiradians.customTNTIgniter.common.item.ItemTNTIgniter;
 
 public class ContainerItem extends Container
 {
@@ -53,7 +54,11 @@ public class ContainerItem extends Container
 
 		if (!world.isRemote)
 		{
-			ItemStack stack = player.getHeldItemMainhand();
+			ItemStack stack = null;
+			if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemTNTIgniter)
+				stack = player.getHeldItemMainhand();
+			else if(player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemTNTIgniter)
+				stack = player.getHeldItemOffhand();
 			inventory.writeToNBT(stack.getTagCompound());
 		}
 
@@ -119,7 +124,8 @@ public class ContainerItem extends Container
 	@Override
 	public ItemStack slotClick(int slot, int button, ClickType click, EntityPlayer player) 
 	{
-		if (slot >= 0 && getSlot(slot) != null && getSlot(slot).getStack() == player.getActiveItemStack()) 
+		if (slot >= 0 && getSlot(slot) != null && getSlot(slot).getStack() != null 
+				&& getSlot(slot).getStack().getItem() instanceof ItemTNTIgniter)
 		{
 			return null;
 		}

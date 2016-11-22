@@ -188,7 +188,15 @@ public class GuiItemInventory extends GuiContainer
 		}
 		else if (button == this.powerAdd)
 		{
-			if (this.inventory.igniter.power > 63)
+			if(this.inventory.igniter.filter == 2 && this.inventory.igniter.power >= 6)
+			{
+				this.inventory.igniter.power = 6;
+			}
+			else if(this.inventory.igniter.filter == 2 && this.inventory.igniter.power + 5 > 6 && GuiScreen.isShiftKeyDown())
+			{
+				this.inventory.igniter.power = 6;
+			}
+			else if (this.inventory.igniter.power > 63)
 			{}
 			else if (this.inventory.igniter.power + 5 <= 64 && GuiScreen.isShiftKeyDown())
 				this.inventory.igniter.power += 5;
@@ -218,6 +226,8 @@ public class GuiItemInventory extends GuiContainer
 			else if (this.inventory.igniter.filter == 1)
 			{
 				this.inventory.igniter.filter = 2;
+				if(this.inventory.igniter.power > 6)
+					this.inventory.igniter.power = 6;
 				button.displayString = "Blacklist";
 			}
 			else
@@ -351,6 +361,7 @@ public class GuiItemInventory extends GuiContainer
 				{
 					List<String> list = new ArrayList<String>();
 					list.add("Blocks in blacklist will not be destroyed.");
+					list.add("Note: Maximum power allowed is 6.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
 			}

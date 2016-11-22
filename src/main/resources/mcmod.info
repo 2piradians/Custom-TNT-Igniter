@@ -2,9 +2,9 @@
 {
   "modid": "customTNTIgniter",
   "name": "Custom TNT Igniter",
-  "description": "Adds an igniter that allows customizing tnt explosions.",
-  "version": "1.0",
-  "mcversion": "1.8",
+  "description": "Adds an igniter that allows customizing TNT explosions.",
+  "version": "1.1",
+  "mcversion": "1.10.2",
   "url": "",
   "updateUrl": "",
   "authorList": ["2piradians"],
