@@ -85,12 +85,14 @@ public class InventoryTNTIgniter implements IInventory
 				this.setInventorySlotContents(index, null);
 				this.markDirty();
 				return itemstack;
-			} else {
+			} 
+			else {
 				itemstack = this.getStackInSlot(index).splitStack(count);
 
 				if (this.getStackInSlot(index).stackSize <= 0) {
 					this.setInventorySlotContents(index, null);
-				} else {
+				} 
+				else {
 					//Just to show that changes happened
 					this.setInventorySlotContents(index, this.getStackInSlot(index));
 				}
@@ -98,7 +100,8 @@ public class InventoryTNTIgniter implements IInventory
 				this.markDirty();
 				return itemstack;
 			}
-		} else {
+		} 
+		else {
 			return null;
 		}
 	}

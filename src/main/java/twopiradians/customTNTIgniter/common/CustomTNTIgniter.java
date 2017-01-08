@@ -23,7 +23,7 @@ public class CustomTNTIgniter
 {
 	public static final String MODID = "customTNTIgniter";
 	public static final String MODNAME = "Custom TNT Igniter";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.2";
 	public static final CustomTNTIgniterCreativeTab tab = new CustomTNTIgniterCreativeTab("tabCustomTNTIgniter");
 	@SidedProxy(clientSide = "twopiradians.customTNTIgniter.client.ClientProxy", serverSide = "twopiradians.customTNTIgniter.common.CommonProxy")
 	public static CommonProxy proxy;

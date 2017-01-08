@@ -236,16 +236,13 @@ public class CustomExplosion extends Explosion
 						else
 							entity.attackEntityFrom(DamageSource.causeExplosionDamage(this), (float)((int)((d10 * d10 + d10) / 2.0D * 8.0D * (double)f3 + 1.0D)));
 						if (entity instanceof EntityLivingBase)
-						{
-							d11 = EnchantmentProtection.getBlastDamageReduction((EntityLivingBase)entity, d10);
-						}						entity.motionX += d5 * d11;
+							d11 = EnchantmentProtection.getBlastDamageReduction((EntityLivingBase)entity, d10);				
+						entity.motionX += d5 * d11;
 						entity.motionY += d7 * d11;
 						entity.motionZ += d9 * d11;
 
 						if (entity instanceof EntityPlayer)
-						{
 							this.field_77288_k.put((EntityPlayer)entity, new Vec3d(d5 * d10, d7 * d10, d9 * d10));
-						}
 					}
 				}
 			}
@@ -260,13 +257,9 @@ public class CustomExplosion extends Explosion
 		this.worldObj.playSound((EntityPlayer)null, this.explosionX, this.explosionY, this.explosionZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
 
 		if (this.explosionSize >= 2.0F && this.isSmoking)
-		{
 			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D, new int[0]);
-		}
 		else
-		{
 			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D, new int[0]);
-		}
 
 		Iterator iterator;
 		BlockPos blockpos;

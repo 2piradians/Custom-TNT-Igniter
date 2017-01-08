@@ -43,25 +43,20 @@ public class GuiItemInventory extends GuiContainer
 	@Override
 	public void initGui() 
 	{
-		//TODO buttons
 		super.initGui();
-		if (this.inventory.igniter.enchanted)
-		{
+		if (this.inventory.igniter.enchanted) {
 			this.buttonList.add(this.dropItems = new GuiButtonExt(7, this.width / 2 + 71, this.height / 2 - 74, 40, 14, this.inventory.igniter.dropAll == 0 ? "None" : this.inventory.igniter.dropAll == 1 ? "Normal" : "All"));
 			this.dropItems.enabled = true;
 		}
-		else
-		{
+		else {
 			this.buttonList.add(this.dropItems = new GuiButtonExt(7, this.width / 2 + 71, this.height / 2 - 74, 40, 14, this.inventory.igniter.dropAll == 0 ? "None" : this.inventory.igniter.dropAll == 1 ? "Normal" : "All"));
 			this.dropItems.enabled = false;
 		}
-		if (this.inventory.igniter.enchanted)
-		{
+		if (this.inventory.igniter.enchanted) {
 			this.buttonList.add(this.silkTouch = new GuiButtonExt(8, this.width / 2 + 71, this.height / 2 - 106, 40, 14, this.inventory.igniter.silk ? "Yes" : "No"));
 			this.silkTouch.enabled = true;
 		}
-		else
-		{
+		else {
 			this.buttonList.add(this.silkTouch = new GuiButtonExt(8, this.width / 2 + 71, this.height / 2 - 106, 40, 14, this.inventory.igniter.silk ? "Yes" : "No"));
 			this.silkTouch.enabled = false;
 		}
@@ -80,122 +75,92 @@ public class GuiItemInventory extends GuiContainer
 	{
 		if (button == this.dropItems)
 		{
-			if(!this.inventory.igniter.enchanted)
-			{
-
-			}
-			else
-			{
-
-				if (this.inventory.igniter.dropAll == 1)
-				{
+			if(!this.inventory.igniter.enchanted) 
+			{}
+			else {
+				if (this.inventory.igniter.dropAll == 1) {
 					this.inventory.igniter.dropAll = 2;
 					button.displayString = "All";
 				}
-				else if (this.inventory.igniter.dropAll == 2)
-				{
+				else if (this.inventory.igniter.dropAll == 2) {
 					this.inventory.igniter.dropAll = 0;
 					button.displayString = "None";
 				}
-				else
-				{
+				else {
 					this.inventory.igniter.dropAll = 1;
 					button.displayString = "Normal";
 				}
 			}
 		}
-		else if (button == this.silkTouch)
-		{
-			if(this.inventory.igniter.enchanted)
-			{
-				if (this.inventory.igniter.silk)
-				{
+		else if (button == this.silkTouch) {
+			if(this.inventory.igniter.enchanted) {
+				if (this.inventory.igniter.silk) {
 					this.inventory.igniter.silk = false;
 					button.displayString = "No";
 				}
-				else
-				{
+				else {
 					this.inventory.igniter.silk = true;
 					button.displayString = "Yes";
 				}
 			}
 		}
-		else if (button == this.killItems)
-		{
-			if (this.inventory.igniter.killItems)
-			{
+		else if (button == this.killItems) {
+			if (this.inventory.igniter.killItems) {
 				this.inventory.igniter.killItems = false;
 				button.displayString = "No";
 			}
-			else
-			{
+			else {
 				this.inventory.igniter.killItems = true;
 				button.displayString = "Yes";
 			}
 		}
-		else if (button == this.damageEntities)
-		{
-			if (this.inventory.igniter.damageEntities)
-			{
+		else if (button == this.damageEntities) {
+			if (this.inventory.igniter.damageEntities) {
 				this.inventory.igniter.damageEntities = false;
 				button.displayString = "No";
 			}
-			else
-			{
+			else {
 				this.inventory.igniter.damageEntities = true;
 				button.displayString = "Yes";
 			}
 		}
-		else if (button == this.fuseAdd)
-		{
+		else if (button == this.fuseAdd) {
 			if (fuseSec > 19)
 			{}
-			else if (fuseSec + 5 <= 20 && GuiScreen.isShiftKeyDown())
-			{
+			else if (fuseSec + 5 <= 20 && GuiScreen.isShiftKeyDown()) {
 				fuseSec += 5;
 				this.inventory.igniter.fuse = fuseSec * 20;
 			}
-			else if (fuseSec + 5 > 20 && GuiScreen.isShiftKeyDown())
-			{
+			else if (fuseSec + 5 > 20 && GuiScreen.isShiftKeyDown()) {
 				fuseSec = 20;
 				this.inventory.igniter.fuse = fuseSec * 20;
 			}
-			else
-			{
+			else {
 				++fuseSec;
 				this.inventory.igniter.fuse = fuseSec * 20;
 			}
 		}
-		else if (button == this.fuseSubtract)
-		{
+		else if (button == this.fuseSubtract) {
 			if (fuseSec < 1)
 			{}
-			else if (fuseSec - 5 >= 0 && GuiScreen.isShiftKeyDown())
-			{
+			else if (fuseSec - 5 >= 0 && GuiScreen.isShiftKeyDown()) {
 				fuseSec -= 5;
 				this.inventory.igniter.fuse = fuseSec * 20;
 			}
-			else if (fuseSec - 5 < 0 && GuiScreen.isShiftKeyDown())
-			{
+			else if (fuseSec - 5 < 0 && GuiScreen.isShiftKeyDown()) {
 				fuseSec = 0;
 				this.inventory.igniter.fuse = fuseSec * 20;
 			}
-			else
-			{
+			else {
 				--fuseSec;
 				this.inventory.igniter.fuse = fuseSec * 20;
 			}
 		}
-		else if (button == this.powerAdd)
-		{
+		else if (button == this.powerAdd) {
 			if(this.inventory.igniter.filter == 2 && this.inventory.igniter.power >= 6)
-			{
 				this.inventory.igniter.power = 6;
-			}
 			else if(this.inventory.igniter.filter == 2 && this.inventory.igniter.power + 5 > 6 && GuiScreen.isShiftKeyDown())
-			{
 				this.inventory.igniter.power = 6;
-			}
 			else if (this.inventory.igniter.power > 63)
 			{}
 			else if (this.inventory.igniter.power + 5 <= 64 && GuiScreen.isShiftKeyDown())
@@ -218,27 +183,23 @@ public class GuiItemInventory extends GuiContainer
 		}
 		else if (button == this.filter)
 		{
-			if (this.inventory.igniter.filter == 0)
-			{
+			if (this.inventory.igniter.filter == 0) {
 				this.inventory.igniter.filter = 1;
 				button.displayString = "Whitelist";
 			}
-			else if (this.inventory.igniter.filter == 1)
-			{
+			else if (this.inventory.igniter.filter == 1) {
 				this.inventory.igniter.filter = 2;
 				if(this.inventory.igniter.power > 6)
 					this.inventory.igniter.power = 6;
 				button.displayString = "Blacklist";
 			}
-			else
-			{
+			else {
 				this.inventory.igniter.filter = 0;
 				button.displayString = "No Filter";
 			}
 		}
 		else if (button == this.reset)
 		{
-			//TODO reset
 			this.inventory.igniter.filter = 0;
 			this.filter.displayString = "No Filter";
 			this.inventory.igniter.silk = false;
@@ -278,87 +239,72 @@ public class GuiItemInventory extends GuiContainer
 		else
 			this.fontRendererObj.drawString(Integer.toString((int)this.inventory.igniter.power), 150, 58, 4210752);
 
-		//TODO hover over text
+		//Start of hover over text
 		int k = (this.width - this.xSize) / 2; //X axis on GUI
 		int l = (this.height - this.ySize) / 2; //Y axis on GUI
-		if (mouseX > this.silkTouch.xPosition && mouseX < this.silkTouch.xPosition + this.silkTouch.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.silkTouch.yPosition && mouseY < this.silkTouch.yPosition + this.silkTouch.height)
-			{
-				if (this.inventory.igniter.enchanted)
-				{
-					if(this.inventory.igniter.silk)
-					{
+		//Silk Touch button check
+		if (mouseX > this.silkTouch.xPosition && mouseX < this.silkTouch.xPosition + this.silkTouch.width) {
+			if (mouseY > this.silkTouch.yPosition && mouseY < this.silkTouch.yPosition + this.silkTouch.height) {
+				if (this.inventory.igniter.enchanted) {
+					if(this.inventory.igniter.silk) {
 						List<String> list = new ArrayList<String>();
 						list.add("Will silk touch exploded blocks.");
 						this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 					}
-					else
-					{
+					else {
 						List<String> list = new ArrayList<String>();
 						list.add("Will not silk touch exploded blocks.");
 						this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 					}
 				}
-				else
-				{
+				else {
 					List<String> list = new ArrayList<String>();
 					list.add("This requires the Silk Touch enchantment.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
 			}
 		}
-		if (mouseX > this.dropItems.xPosition && mouseX < this.dropItems.xPosition + this.dropItems.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.dropItems.yPosition && mouseY < this.dropItems.yPosition + this.dropItems.height)
-			{
-				if (this.inventory.igniter.enchanted)
-				{
-					if(this.inventory.igniter.dropAll == 0)
-					{
+		//Dropped Items button check
+		if (mouseX > this.dropItems.xPosition && mouseX < this.dropItems.xPosition + this.dropItems.width) {
+			if (mouseY > this.dropItems.yPosition && mouseY < this.dropItems.yPosition + this.dropItems.height) {
+				if (this.inventory.igniter.enchanted) {
+					if(this.inventory.igniter.dropAll == 0) {
 						List<String> list = new ArrayList<String>();
 						list.add("Will not drop items.");
 						this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 					}
-					else if (this.inventory.igniter.dropAll == 1)
-					{
+					else if (this.inventory.igniter.dropAll == 1) {
 						List<String> list = new ArrayList<String>();
 						list.add("Will drop items normally.");
 						this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 					}
-					else
-					{
+					else {
 						List<String> list = new ArrayList<String>();
 						list.add("Will drop all items created.");
 						this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 					}
 				}
-				else
-				{
+				else {
 					List<String> list = new ArrayList<String>();
 					list.add("This requires the Silk Touch enchantment.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
 			}
 		}
-		if (mouseX > this.filter.xPosition && mouseX < this.filter.xPosition + this.filter.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.filter.yPosition && mouseY < this.filter.yPosition + this.filter.height)
-			{
-				if(this.inventory.igniter.filter == 0)
-				{
+		//Filter button check
+		if (mouseX > this.filter.xPosition && mouseX < this.filter.xPosition + this.filter.width) {
+			if (mouseY > this.filter.yPosition && mouseY < this.filter.yPosition + this.filter.height) {
+				if(this.inventory.igniter.filter == 0) {
 					List<String> list = new ArrayList<String>();
 					list.add("Blocks will be destroyed normally.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
-				else if (this.inventory.igniter.filter == 1)
-				{
+				else if (this.inventory.igniter.filter == 1) {
 					List<String> list = new ArrayList<String>();
 					list.add("Only blocks in whitelist will be destroyed.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
-				else
-				{
+				else {
 					List<String> list = new ArrayList<String>();
 					list.add("Blocks in blacklist will not be destroyed.");
 					list.add("Note: Maximum power allowed is 6.");
@@ -366,109 +312,95 @@ public class GuiItemInventory extends GuiContainer
 				}
 			}
 		}
-		if (mouseX > this.damageEntities.xPosition && mouseX < this.damageEntities.xPosition + this.damageEntities.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.damageEntities.yPosition && mouseY < this.damageEntities.yPosition + this.damageEntities.height)
-			{
-				if(this.inventory.igniter.damageEntities)
-				{
+		//Damage Entities button check
+		if (mouseX > this.damageEntities.xPosition && mouseX < this.damageEntities.xPosition + this.damageEntities.width) {
+			if (mouseY > this.damageEntities.yPosition && mouseY < this.damageEntities.yPosition + this.damageEntities.height) {
+				if(this.inventory.igniter.damageEntities) {
 					List<String> list = new ArrayList<String>();
 					list.add("Explosion will damage entities.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
-				else
-				{
+				else {
 					List<String> list = new ArrayList<String>();
 					list.add("Explosion will not damage entities.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
 			}
 		}
-		if (mouseX > this.killItems.xPosition && mouseX < this.killItems.xPosition + this.killItems.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.killItems.yPosition && mouseY < this.killItems.yPosition + this.killItems.height)
-			{
-				if(this.inventory.igniter.killItems)
-				{
+		//Kill Items button check
+		if (mouseX > this.killItems.xPosition && mouseX < this.killItems.xPosition + this.killItems.width) {
+			if (mouseY > this.killItems.yPosition && mouseY < this.killItems.yPosition + this.killItems.height) {
+				if(this.inventory.igniter.killItems) {
 					List<String> list = new ArrayList<String>();
 					list.add("Explosion will kill items on the ground.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
-				else
-				{
+				else {
 					List<String> list = new ArrayList<String>();
 					list.add("Explosion will not kill items on the ground.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);
 				}
 			}
 		}
-		if (mouseX > this.powerSubtract.xPosition && mouseX < this.powerSubtract.xPosition + this.powerSubtract.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.powerSubtract.yPosition && mouseY < this.powerSubtract.yPosition + this.powerSubtract.height)
-			{
+		//Power Subtract button check
+		if (mouseX > this.powerSubtract.xPosition && mouseX < this.powerSubtract.xPosition + this.powerSubtract.width) {
+			if (mouseY > this.powerSubtract.yPosition && mouseY < this.powerSubtract.yPosition + this.powerSubtract.height) {
 					List<String> list = new ArrayList<String>();
 					list.add("Decreases the power of the explosion by 1 level.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.powerAdd.xPosition && mouseX < this.powerAdd.xPosition + this.powerAdd.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.powerAdd.yPosition && mouseY < this.powerAdd.yPosition + this.powerAdd.height)
-			{
+		//Power Add button check
+		if (mouseX > this.powerAdd.xPosition && mouseX < this.powerAdd.xPosition + this.powerAdd.width) {
+			if (mouseY > this.powerAdd.yPosition && mouseY < this.powerAdd.yPosition + this.powerAdd.height) {
 					List<String> list = new ArrayList<String>();
 					list.add("Increases the power of the explosion by 1 level.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.fuseAdd.xPosition && mouseX < this.fuseAdd.xPosition + this.fuseAdd.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.fuseAdd.yPosition && mouseY < this.fuseAdd.yPosition + this.fuseAdd.height)
-			{
+		//Fuse Add button check
+		if (mouseX > this.fuseAdd.xPosition && mouseX < this.fuseAdd.xPosition + this.fuseAdd.width) {
+			if (mouseY > this.fuseAdd.yPosition && mouseY < this.fuseAdd.yPosition + this.fuseAdd.height) {
 					List<String> list = new ArrayList<String>();
 					list.add("Increases the fuse delay by 1 second.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.fuseSubtract.xPosition && mouseX < this.fuseSubtract.xPosition + this.fuseSubtract.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.fuseSubtract.yPosition && mouseY < this.fuseSubtract.yPosition + this.fuseSubtract.height)
-			{
+		//Fuse Subtract button check
+		if (mouseX > this.fuseSubtract.xPosition && mouseX < this.fuseSubtract.xPosition + this.fuseSubtract.width) {
+			if (mouseY > this.fuseSubtract.yPosition && mouseY < this.fuseSubtract.yPosition + this.fuseSubtract.height) {
 					List<String> list = new ArrayList<String>();
 					list.add("Decreases the fuse delay by 1 second.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.reset.xPosition && mouseX < this.reset.xPosition + this.reset.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.reset.yPosition && mouseY < this.reset.yPosition + this.reset.height)
-			{
+		//Reset button check
+		if (mouseX > this.reset.xPosition && mouseX < this.reset.xPosition + this.reset.width) {
+			if (mouseY > this.reset.yPosition && mouseY < this.reset.yPosition + this.reset.height) {
 					List<String> list = new ArrayList<String>();
 					list.add("Resets settings to explode TNT normally.");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.fuseAdd.xPosition - 25 && mouseX < this.fuseAdd.xPosition - 10 + this.fuseAdd.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.fuseAdd.yPosition - 15 && mouseY < this.fuseAdd.yPosition - 15 + this.fuseAdd.height)
-			{
+		//Fuse display check
+		if (mouseX > this.fuseAdd.xPosition - 25 && mouseX < this.fuseAdd.xPosition - 10 + this.fuseAdd.width) 	{
+			if (mouseY > this.fuseAdd.yPosition - 15 && mouseY < this.fuseAdd.yPosition - 15 + this.fuseAdd.height)	{
 					List<String> list = new ArrayList<String>();
 					list.add("Fuse time of the TNT (seconds).");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.fuseAdd.xPosition - 20 && mouseX < this.fuseAdd.xPosition - 14 + this.fuseAdd.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.fuseAdd.yPosition -10 && mouseY < this.fuseAdd.yPosition + this.fuseAdd.height)
-			{
+		//Fuse display check
+		if (mouseX > this.fuseAdd.xPosition - 20 && mouseX < this.fuseAdd.xPosition - 14 + this.fuseAdd.width) {
+			if (mouseY > this.fuseAdd.yPosition -10 && mouseY < this.fuseAdd.yPosition + this.fuseAdd.height) {
 					List<String> list = new ArrayList<String>();
 					list.add("Fuse time of the TNT (seconds).");
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.powerAdd.xPosition - 25 && mouseX < this.powerAdd.xPosition - 10+ this.powerAdd.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.powerAdd.yPosition -15 && mouseY < this.powerAdd.yPosition - 15 + this.powerAdd.height)
-			{
+		//Power display check
+		if (mouseX > this.powerAdd.xPosition - 25 && mouseX < this.powerAdd.xPosition - 10+ this.powerAdd.width) {
+			if (mouseY > this.powerAdd.yPosition -15 && mouseY < this.powerAdd.yPosition - 15 + this.powerAdd.height) {
 					int powderNeeded;
 					if (this.inventory.igniter.power > 4)
 						powderNeeded = (int) this.inventory.igniter.power;
@@ -480,10 +412,9 @@ public class GuiItemInventory extends GuiContainer
 					this.drawHoveringText(list, (int)mouseX - k - 8, (int)mouseY - l, fontRendererObj);				
 			}
 		}
-		if (mouseX > this.powerAdd.xPosition - 23 && mouseX < this.powerAdd.xPosition - 15 + this.powerAdd.width) //Basically checking if mouse is in the correct area
-		{
-			if (mouseY > this.powerAdd.yPosition - 10 && mouseY < this.powerAdd.yPosition + this.powerAdd.height)
-			{
+		//Power display check
+		if (mouseX > this.powerAdd.xPosition - 23 && mouseX < this.powerAdd.xPosition - 15 + this.powerAdd.width) {
+			if (mouseY > this.powerAdd.yPosition - 10 && mouseY < this.powerAdd.yPosition + this.powerAdd.height) {
 					int powderNeeded;
 					if (this.inventory.igniter.power > 4)
 						powderNeeded = (int) this.inventory.igniter.power;
